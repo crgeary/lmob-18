@@ -2,6 +2,7 @@ const path = require('path');
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     mode: process.env.NODE_ENV !== 'production' ? 'development' : 'production',
@@ -30,9 +31,13 @@ module.exports = {
                 test: /\.png/,
                 type: 'asset/resource',
             },
+            {
+                test: /\.css$/i,
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+            },
         ],
     },
-    plugins: [new CleanWebpackPlugin(), new HtmlWebpackPlugin()],
+    plugins: [new CleanWebpackPlugin(), new HtmlWebpackPlugin(), new MiniCssExtractPlugin()],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,

@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import { MainScene } from './scenes/Main';
 
+import './main.css';
+
 new Phaser.Game({
     type: Phaser.AUTO,
     width: 360,
